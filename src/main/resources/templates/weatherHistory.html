@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link th:href="@{/styles/main.css}" rel="stylesheet"/>
+    <title>Weather History</title>
+</head>
+<body>
+<div class="container">
+    <p></p>
+    <form th:action="@{/go-to-home-page}" th:method="get">
+        <input class="weather-input-submit" type="submit" value="Go to home page">
+    </form>
+</div>
+<!-- TABLE: Weather history -->
+<div class="container">
+    <table class="table table-striped">
+        <tr>
+            <th scope="col">Id:</th>
+            <th scope="col">Date&time:</th>
+            <th scope="col">City:</th>
+            <th scope="col">Temperature:</th>
+            <th scope="col">Icon link:</th>
+            <th scope="col">Air pressure:</th>
+            <th scope="col">Sun rise:</th>
+            <th scope="col">Sun set:</th>
+            <th scope="col">Weather state name:</th>
+            <th scope="col">Wind direction:</th>
+            <th scope="col">Wind speed:</th>
+        </tr>
+        <tr th:each="row: ${weatherHistory}">
+            <td th:text="${row.getId()}"></td>
+            <td th:text="${row.getDateTime()}"></td>
+            <td th:text="${row.getCity()}"></td>
+            <td th:text="${row.getTemperature()}"></td>
+            <td th:text="${row.getIconLink()}"></td>
+            <td th:text="${row.getAirPressure()}"></td>
+            <td th:text="${row.getSunRise()}"></td>
+            <td th:text="${row.getSunSet()}"></td>
+            <td th:text="${row.getWeatherStateName()}"></td>
+            <td th:text="${row.getWindDirectionCompass()}"></td>
+            <td th:text="${row.getWindSpeed()}"></td>
+        </tr>
+    </table>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>

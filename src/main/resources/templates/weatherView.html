@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/main.css}" rel="stylesheet"/>
+    <title>Weather</title>
+</head>
+<body>
+
+<div class="weather-div">
+    <h1>Weather forecast app</h1>
+    <div class="weather-form-div">
+        <form th:action="@{/set-weather}" th:method="post">
+            <label>
+                <input class="weather-input-text" name="city" id="city-name" type="text" placeholder="Type the city">
+            </label>
+            <input class="weather-input-submit" name="post-city-submit" type="submit" value="Confirm">
+        </form>
+    </div>
+    <div class="weather-form-div">
+        <form th:action="@{/go-to-home-page}" th:method="get">
+            <input class="weather-input-submit" type="submit" value="Go to home page">
+        </form>
+    </div>
+
+    <p class="weather-city" th:text="${city}"></p>
+    <p class="weather-img-p">
+        <img class="weather-icon" th:src="${iconLink}" alt="weather icon">
+    </p>
+    <p class="weather-state" th:text="${weatherStateName}"></p>
+
+    <p class="weather-description">Temperature [&deg;C]:
+    <span class="weather-description" th:text="${temperature}"></span>
+    </p>
+
+    <p class="weather-description">Air pressure [hPa]:
+    <span class="weather-description" th:text="${airPressure}"></span>
+    </p>
+
+    <p class="weather-description">Wind speed [mph]:
+    <span class="weather-description" th:text="${windSpeed}"></span>
+    </p>
+
+    <p class="weather-description">Wind direction:
+    <span class="weather-description" th:text="${windDirectionCompass}"></span>
+    </p>
+
+    <p class="weather-description">Sun rise:
+    <span class="weather-description" th:text="${sunRise}"></span>
+    </p>
+
+    <p class="weather-description">Sun set:
+    <span class="weather-description" th:text="${sunSet}"></span>
+    </p>
+
+</div>
+
+
+</body>
+</html>

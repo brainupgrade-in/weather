@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/main.css}" rel="stylesheet"/>
+    <title>Error</title>
+<body>
+
+<div class="weather-div">
+    <h1>Weather forecast app</h1>
+
+    <div class="weather-form-div">
+        <form th:action="@{/go-to-home-page}" th:method="get">
+            <input class="weather-input-submit" type="submit" value="Go to home page">
+        </form>
+    </div>
+
+    <p class="weather-error-text"> ERROR: City not found.</p>
+    <p class="weather-link">
+        <a href="https://www.metaweather.com/map/" target="_blank">Check available cities on
+            map.</a>
+    </p>
+
+</div>
+
+</body>
+</html>
