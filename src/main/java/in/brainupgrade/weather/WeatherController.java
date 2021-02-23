@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class WeatherController {
 	private final WeatherService weatherService;
 	private final WeatherHistoryService weatherHistoryService;
@@ -39,6 +42,7 @@ public class WeatherController {
 
 	@RequestMapping(value = "/set-weather", method = { RequestMethod.PUT, RequestMethod.POST })
 	public String setWeather(String city) {
+		log.info("Setting weather city: " + city);
 		if (city.trim().equals("")) {
 			return "weatherError";
 		}
@@ -51,6 +55,7 @@ public class WeatherController {
 
 	@RequestMapping(value = "/set-weather-history-city-home", method = { RequestMethod.PUT, RequestMethod.POST })
 	public String setWeatherHistoryCityHome(String city) {
+		log.info("Setting weather history city home: " + city);
 		boolean isCitySet = weatherHistoryService.setCityToFollow(city);
 		if (isCitySet) {
 			return "redirect:/weather-home";
@@ -60,18 +65,21 @@ public class WeatherController {
 
 	@GetMapping("/get-history")
 	public String getHistory(Model model) {
+		log.info("Get weather for followed city");
 		model.addAttribute("weatherHistory", weatherHistoryService.findByFollowedCity());
 		return "weatherHistory";
 	}
 
 	@GetMapping("/get-whole-history")
 	public String getWholeHistory(Model model) {
+		log.info("Get whole history");
 		model.addAttribute("weatherHistory", weatherHistoryService.findAll());
 		return "weatherHistory";
 	}
 
 	@GetMapping("/weather-view")
 	public String getWeather(Model model) {
+		log.info("View weather");
 		WeatherInfo weatherInfo = weatherService.getWeatherInfo();
 
 		model.addAttribute("city", weatherInfo.getCity());
