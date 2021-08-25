@@ -22,5 +22,5 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: weather-service
+              serviceName: weather-front
               servicePort: 80
