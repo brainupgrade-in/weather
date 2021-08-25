@@ -6,5 +6,8 @@ User can display historical data: whole or find by followed city.
 
 Thanksgiving Note: Base code used for this project is from https://github.com/Pozadr/AS_weather  Many thanks to the author.
 
+## Build Status
+[![Build Status](https://cicd.brainupgrade.in/buildStatus/icon?job=weather)](https://cicd.brainupgrade.in/job/weather/)
+
 
 
