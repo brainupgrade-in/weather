@@ -16,7 +16,7 @@ spec:
         app: weather-front
     spec:
       containers:
-        - image: brainupgrade/weather:microservices-front
+        - image: brainupgrade/weather:latest
           imagePullPolicy: Always
           name: weather-front
           env:
@@ -29,6 +29,6 @@ spec:
             - name: spring.datasource.password
               value: weather
             - name: weatherServiceURL
-              value: http://weather-services.weather.svc.cluster.local
+              value: http://weather-service.svc.cluster.local
           ports:
             - containerPort: 8080
