@@ -13,19 +13,11 @@ pipeline {
         GIT_TOKEN = credentials('github-bu-token')
     }
     stages {
-        stage('docker login') {
-            steps{
-                sh(script: """
-                    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-                """, returnStdout: true) 
-            }
-        }
-        stage('code checkout') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/features-one']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/brainupgrade-in/weather.git']]])
-                // sh 'mvn clean install'
-            }
-        }
+        // stage('code checkout') {
+        //     steps {
+        //         checkout([$class: 'GitSCM', branches: [[name: '*/features-one']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/brainupgrade-in/weather.git']]])
+        //     }
+        // }
         stage('code build') {
             steps{
                 sh script: '''
@@ -33,6 +25,13 @@ pipeline {
                 cd $WORKSPACE
                 mvn clean install
                 '''
+            }
+        }
+        stage('docker login') {
+            steps{
+                sh(script: """
+                    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+                """, returnStdout: true) 
             }
         }
         stage('docker build') {
