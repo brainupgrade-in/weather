@@ -13,19 +13,11 @@ pipeline {
         GIT_TOKEN = credentials('github-bu-token')
     }
     stages {
-        stage('docker login') {
-            steps{
-                sh(script: """
-                    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-                """, returnStdout: true) 
-            }
-        }
-        stage('code checkout') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/features']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/brainupgrade-in/weather.git']]])
-                // sh 'mvn clean install'
-            }
-        }
+        // stage('code checkout') {
+        //     steps {
+        //         checkout([$class: 'GitSCM', branches: [[name: '*/features-one']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/brainupgrade-in/weather.git']]])
+        //     }
+        // }
         stage('code build') {
             steps{
                 sh script: '''
@@ -35,12 +27,19 @@ pipeline {
                 '''
             }
         }
+        stage('docker login') {
+            steps{
+                sh(script: """
+                    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+                """, returnStdout: true) 
+            }
+        }
         stage('docker build') {
             steps{
                 sh script: '''
                 #!/bin/bash
                 cd $WORKSPACE
-                docker build -t brainupgrade/weather:jenkins-${BUILD_NUMBER} -f Dockerfile .
+                docker build -t brainupgrade/weather:features-one-${BUILD_NUMBER} -f Dockerfile .
                 '''
             }
         }
@@ -48,7 +47,7 @@ pipeline {
         stage('docker repo push') {
             steps{
                 sh(script: """
-                    docker push brainupgrade/weather:jenkins-${BUILD_NUMBER}
+                    docker push brainupgrade/weather:features-one-${BUILD_NUMBER}
                 """)
             }
         }
@@ -60,7 +59,7 @@ pipeline {
                 cd $HOME
                 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
                 chmod +x ./kubectl
-                sed -i "s/weather:latest/weather:jenkins-${BUILD_NUMBER}/g" $WORKSPACE/k8s/deploy.yaml
+                sed -i "s/weather:latest/weather:features-one-${BUILD_NUMBER}/g" $WORKSPACE/k8s/deploy.yaml
                 ./kubectl apply -f $WORKSPACE/k8s/deploy.yaml
                 '''
             }
@@ -74,7 +73,7 @@ pipeline {
                 git config --global user.name "jenkins @ brainupgrade.in"
                 git config --global push.default current
                 git checkout .
-                git tag -a ${BUILD_NUMBER} -m "deployed ${BUILD_NUMBER} to kubernetes cluster"
+                git tag -a features-one-${BUILD_NUMBER} -m "deployed features-one-${BUILD_NUMBER} to kubernetes cluster"
                 git push https://$GIT_USERNAME:$GIT_TOKEN@github.com/brainupgrade-in/weather.git  ${BUILD_NUMBER}
                 '''  
             }
