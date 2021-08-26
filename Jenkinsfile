@@ -73,7 +73,7 @@ pipeline {
                 git config --global user.name "jenkins @ brainupgrade.in"
                 git config --global push.default current
                 git checkout .
-                git tag -a ${BUILD_NUMBER} -m "deployed ${BUILD_NUMBER} to kubernetes cluster"
+                git tag -a features-one-${BUILD_NUMBER} -m "deployed features-one-${BUILD_NUMBER} to kubernetes cluster"
                 git push https://$GIT_USERNAME:$GIT_TOKEN@github.com/brainupgrade-in/weather.git  ${BUILD_NUMBER}
                 '''  
             }
