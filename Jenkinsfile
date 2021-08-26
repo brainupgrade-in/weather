@@ -64,19 +64,19 @@ pipeline {
                 '''
             }
         }
-        stage('tag & git push') {
-            steps {
-                sh script: '''
-                #!/bin/bash
-                cd $WORKSPACE/
-                git config --global user.email "jenkins@brainupgrade.in"
-                git config --global user.name "jenkins @ brainupgrade.in"
-                git config --global push.default current
-                git checkout .
-                git tag -a features-two-${BUILD_NUMBER} -m "deployed features-two-${BUILD_NUMBER} to kubernetes cluster"
-                git push https://$GIT_USERNAME:$GIT_TOKEN@github.com/brainupgrade-in/weather.git  features-two-${BUILD_NUMBER}
-                '''  
-            }
-        }
+        // stage('tag & git push') {
+        //     steps {
+        //         sh script: '''
+        //         #!/bin/bash
+        //         cd $WORKSPACE/
+        //         git config --global user.email "jenkins@brainupgrade.in"
+        //         git config --global user.name "jenkins @ brainupgrade.in"
+        //         git config --global push.default current
+        //         git checkout .
+        //         git tag -a features-two-${BUILD_NUMBER} -m "deployed features-two-${BUILD_NUMBER} to kubernetes cluster"
+        //         git push https://$GIT_USERNAME:$GIT_TOKEN@github.com/brainupgrade-in/weather.git  features-two-${BUILD_NUMBER}
+        //         '''  
+        //     }
+        // }
     }  
 }
