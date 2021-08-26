@@ -40,7 +40,7 @@ pipeline {
                 sh script: '''
                 #!/bin/bash
                 cd $WORKSPACE
-                docker build -t brainupgrade/weather:jenkins-${BUILD_NUMBER} -f Dockerfile .
+                docker build -t brainupgrade/weather:features-one-${BUILD_NUMBER} -f Dockerfile .
                 '''
             }
         }
@@ -48,7 +48,7 @@ pipeline {
         stage('docker repo push') {
             steps{
                 sh(script: """
-                    docker push brainupgrade/weather:jenkins-${BUILD_NUMBER}
+                    docker push brainupgrade/weather:features-one-${BUILD_NUMBER}
                 """)
             }
         }
@@ -60,7 +60,7 @@ pipeline {
                 cd $HOME
                 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
                 chmod +x ./kubectl
-                sed -i "s/weather:latest/weather:jenkins-${BUILD_NUMBER}/g" $WORKSPACE/k8s/deploy.yaml
+                sed -i "s/weather:latest/weather:features-one-${BUILD_NUMBER}/g" $WORKSPACE/k8s/deploy.yaml
                 ./kubectl apply -f $WORKSPACE/k8s/deploy.yaml
                 '''
             }
