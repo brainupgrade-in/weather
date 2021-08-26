@@ -39,7 +39,7 @@ pipeline {
                 sh script: '''
                 #!/bin/bash
                 cd $WORKSPACE
-                docker build -t brainupgrade/weather:features-one-${BUILD_NUMBER} -f Dockerfile .
+                docker build -t brainupgrade/weather:features-${BUILD_NUMBER} -f Dockerfile .
                 '''
             }
         }
@@ -47,7 +47,7 @@ pipeline {
         stage('docker repo push') {
             steps{
                 sh(script: """
-                    docker push brainupgrade/weather:features-one-${BUILD_NUMBER}
+                    docker push brainupgrade/weather:features-${BUILD_NUMBER}
                 """)
             }
         }
@@ -59,7 +59,7 @@ pipeline {
                 cd $HOME
                 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
                 chmod +x ./kubectl
-                sed -i "s/weather:latest/weather:features-one-${BUILD_NUMBER}/g" $WORKSPACE/k8s/deploy.yaml
+                sed -i "s/weather:latest/weather:features-${BUILD_NUMBER}/g" $WORKSPACE/k8s/deploy.yaml
                 ./kubectl apply -f $WORKSPACE/k8s/deploy.yaml
                 '''
             }
@@ -73,8 +73,8 @@ pipeline {
                 git config --global user.name "jenkins @ brainupgrade.in"
                 git config --global push.default current
                 git checkout .
-                git tag -a features-one-${BUILD_NUMBER} -m "deployed features-one-${BUILD_NUMBER} to kubernetes cluster"
-                git push https://$GIT_USERNAME:$GIT_TOKEN@github.com/brainupgrade-in/weather.git  features-one-${BUILD_NUMBER}
+                git tag -a features-${BUILD_NUMBER} -m "deployed features-${BUILD_NUMBER} to kubernetes cluster"
+                git push https://$GIT_USERNAME:$GIT_TOKEN@github.com/brainupgrade-in/weather.git  features-${BUILD_NUMBER}
                 '''  
             }
         }
