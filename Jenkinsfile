@@ -22,7 +22,7 @@ pipeline {
         }
         stage('code checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/features']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/brainupgrade-in/weather.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/features-one']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/brainupgrade-in/weather.git']]])
                 // sh 'mvn clean install'
             }
         }
