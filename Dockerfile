@@ -1,6 +1,6 @@
 FROM azul/zulu-openjdk-alpine:11.0.6-jre
 
-MAINTAINER rajesh@unigps.in
+MAINTAINER rajesh@brainupgrade.in
 
 ADD target/app.jar app.jar
 
