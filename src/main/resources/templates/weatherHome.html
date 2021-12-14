@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <link th:href="@{/styles/main.css}" rel="stylesheet"/>
+    <link th:href="@{styles/main.css}" rel="stylesheet"/>
     <title>Weather</title>
 </head>
 <body>
@@ -11,14 +11,14 @@
     <h1>Weather forecast app Test #1</h1>
     <div class="weather-form-div">
         <p class="home-form-description"> Current weather:</p>
-        <form th:action="@{/set-weather}" th:method="post">
+        <form th:action="@{set-weather}" th:method="post">
             <label for="set-weather-city-name"></label>
             <input class="weather-input-text" name="city" id="set-weather-city-name" type="text"
                    placeholder="Type the city">
             <input class="weather-input-submit" name="post-city-submit" type="submit" value="Confirm">
         </form>
         <p></p>
-        <form th:action="@{/set-weather-history-city-home}" th:method="post">
+        <form th:action="@{set-weather-history-city-home}" th:method="post">
             <p class="home-form-description">Follow weather history of city:</p>
             <label for="city-to-follow"></label>
             <input class="weather-input-text" name="city" id="city-to-follow" type="text"
@@ -29,13 +29,13 @@
             <span class="weather-description" th:text="${followedCity}"></span>
         </p>
         <div class="home-form">
-            <form th:action="@{/get-history}" th:method="get">
+            <form th:action="@{get-history}" th:method="get">
                 <input class="weather-input-submit" name="post-city-submit" type="submit"
                        value="Get followed city history">
             </form>
         </div>
         <div class="home-form">
-            <form th:action="@{/get-whole-history}" th:method="get">
+            <form th:action="@{get-whole-history}" th:method="get">
                 <input class="weather-input-submit" name="post-city-submit" type="submit" value="Get WHOLE history">
             </form>
         </div>
