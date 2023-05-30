@@ -24,25 +24,25 @@
     </div>
 
     <p class="weather-city" th:text="${city}"></p>
-    <p class="weather-img-p">
+    <!-- <p class="weather-img-p">
         <img class="weather-icon" th:src="${iconLink}" alt="weather icon">
-    </p>
+    </p> -->
     <p class="weather-state" th:text="${weatherStateName}"></p>
 
     <p class="weather-description">Temperature [&deg;C]:
     <span class="weather-description" th:text="${temperature}"></span>
     </p>
 
-    <p class="weather-description">Air pressure [hPa]:
+    <!-- <p class="weather-description">Air pressure [hPa]:
     <span class="weather-description" th:text="${airPressure}"></span>
-    </p>
+    </p> -->
 
-    <p class="weather-description">Wind speed [mph]:
+    <p class="weather-description">Wind speed [kmph]:
     <span class="weather-description" th:text="${windSpeed}"></span>
     </p>
 
     <p class="weather-description">Wind direction:
-    <span class="weather-description" th:text="${windDirectionCompass}"></span>
+    <span class="weather-description" th:text="${windDirection}"></span>
     </p>
 
     <p class="weather-description">Sun rise:

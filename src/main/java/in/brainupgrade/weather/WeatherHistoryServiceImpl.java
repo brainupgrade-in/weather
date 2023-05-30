@@ -63,7 +63,7 @@ public class WeatherHistoryServiceImpl implements WeatherHistoryService {
 
 	@Scheduled(fixedDelay = 60000)
 	public void saveDataToDataBase() {
-		if (!followedCity.isBlank() || !followedCity.equals("None")) {
+		if (!followedCity.isBlank() && !followedCity.equals("None")) {
 			Optional<City[]> citiesOpt = Optional.ofNullable(
 					restTemplateWeather.postForObject(weatherServiceURL + "/get-cities", followedCity, City[].class));
 			if (citiesOpt.isPresent() && !(citiesOpt.get().length == 0)) {

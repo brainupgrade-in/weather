@@ -89,6 +89,7 @@ public class WeatherController {
 		model.addAttribute("airPressure", weatherInfo.getAirPressure());
 		model.addAttribute("windSpeed", weatherInfo.getWindSpeed());
 		model.addAttribute("windDirectionCompass", weatherInfo.getWindDirectionCompass());
+		model.addAttribute("windDirection", weatherInfo.getWindDirection());
 		model.addAttribute("sunRise", weatherInfo.getSunRise());
 		model.addAttribute("sunSet", weatherInfo.getSunSet());
 

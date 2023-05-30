@@ -47,9 +47,10 @@ public class WeatherServiceImpl implements WeatherService {
 		weatherInfo.setAirPressure(Math.round(forecastFirstDay.getAirPressure()));
 		weatherInfo.setWindSpeed(Math.round(forecastFirstDay.getWindSpeed()));
 		weatherInfo.setWindDirectionCompass(forecastFirstDay.getWindDirectionCompass());
+		weatherInfo.setWindDirection(forecastFirstDay.getWindDirection().longValue());
 		weatherInfo.setSunRise(weatherForecast.getSunRise().substring(11, 16));
 		weatherInfo.setSunSet(weatherForecast.getSunSet().substring(11, 16));
-		weatherInfo.setIconLink(getIconLink());
+		// weatherInfo.setIconLink(getIconLink());
 		return weatherInfo;
 	}
 

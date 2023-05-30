@@ -9,6 +9,7 @@ public class WeatherInfo {
     private String sunRise;
     private String sunSet;
     private Long windSpeed;
+    private Long windDirection;
     private String IconLink;
 
     public String getCity() {
@@ -73,6 +74,14 @@ public class WeatherInfo {
 
     public void setWindSpeed(Long windSpeed) {
         this.windSpeed = windSpeed;
+    }
+
+    public Long getWindDirection() {
+        return windDirection;
+    }
+
+    public void setWindDirection(Long windDirection) {
+        this.windDirection = windDirection;
     }
 
     public String getIconLink() {
